@@ -10,9 +10,9 @@
 
   <div class="login-box">
     <h2>Login</h2>
-    <form>
-      <input type="text" placeholder="IITP Email or Roll No." required>
-      <input type="password" placeholder="Password" required>
+    <form id="loginForm">
+      <input type="text" id="email" placeholder="IITP Email or Roll No." required>
+      <input type="password" id="password" placeholder="Password" required>
       <input type="submit" value="Login">
     </form>
     <div class="signup-link">
@@ -20,5 +20,27 @@
     </div>
   </div>
 
+  <!-- JS Validation completed here -->
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$|^[0-9]{4}[a-zA-Z]{2}[0-9]{3}$/;
+      if (!emailRegex.test(email)) {
+        alert("Enter a valid IITP email or roll number.");
+        return;
+      }
+
+      alert("Login form validated! Ready to connect to backend.");
+    });
+  </script>
 </body>
 </html>
